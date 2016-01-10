@@ -11,5 +11,6 @@
 
 (defun color-pattern (blk) (list blk 'color '?))
 
-(defun asser_equal (x y)
-  (format t (if (equal x y) "OK~%" "NG~%")))
+(defun supporters (blk)
+  (mapcar #'car
+    (fetch (list '? 'supports blk))))
