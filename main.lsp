@@ -18,9 +18,10 @@
         (t (add-support blk (car blks)) (add-supports blk (cdr blks)))))
 
 (defun remove-blk (blk)
-  (setq blockdata
-    (remove-if
-      #'(lambda (x) (or
-        (match-triple x (list blk '? '?))
-        (match-triple x (list '? '? blk))))
-      blockdata)))
+  (if (removalbe_p blk)
+        (setq blockdata (remove-if #'(lambda (x)
+          (or (match-triple x (list blk '? '?))
+              (match-triple x (list '? '? blk))))
+          blockdata))
+
+        (format t "This block is not removable~%")))
