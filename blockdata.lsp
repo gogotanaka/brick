@@ -1,4 +1,4 @@
-(setf blockdata
+(setq blockdata
        '((b1 shape brick)
          (b1 color green)
          (b1 size small)

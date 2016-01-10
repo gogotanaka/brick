@@ -27,3 +27,14 @@
 
 (defun removalbe_p (blk)
   (null (fetch (list blk 'supports '?))))
+
+(defun add-brick (lst)
+  (setq blockdata
+    (cons lst blockdata)))
+
+(defun add-support (x y)
+  (list (add-brick (list x 'supported-by y)) (add-brick (list y 'supports x))))
+
+(defun add-supports (blk blks)
+  (cond ((null blks) NIL)
+        (t (add-support blk (car blks)) (add-supports blk (cdr blks)))))

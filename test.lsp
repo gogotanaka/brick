@@ -28,3 +28,11 @@
 (asser_equal (removalbe_p 'b2) NIL)
 
 (asser_equal (removalbe_p 'b1) T)
+
+(add-brick '(b4 shape brick))
+
+(add-supports 'b4 '(b2 b3))
+
+(asser_equal (removalbe_p 'b2) NIL)
+
+(print-elements-of-list blockdata)
