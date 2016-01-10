@@ -14,3 +14,13 @@
 (defun supporters (blk)
   (mapcar #'car
     (fetch (list '? 'supports blk))))
+
+(defun flatten (ls)
+  (cond ((null ls) nil)
+        ((atom ls) (list ls))
+        (t (append (flatten (car ls)) (flatten (cdr ls))))))
+
+(defun description (blk)
+  (flatten
+    (mapcar #'cdr
+      (fetch (list blk '? '?)))))

@@ -16,3 +16,5 @@
 (asser_equal (color-pattern 'b1) '(b1 color ?))
 
 (asser_equal (supporters 'b1) '(b2 b3))
+
+(asser_equal (description 'b2) '(shape brick color red size small supprots b1 left-of b3))
