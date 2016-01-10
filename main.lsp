@@ -1,24 +1,9 @@
 (load "blockdata.lsp")
-
-(defun match-element (x y)
-  (or (equal x y) (equal y '?)))
-
-(defun match-triple (x pat)
-  (every #'match-element x pat))
-
-(defun fetch (pat)
-  (remove-if-not #'(lambda (x) (match-triple x pat)) blockdata))
-
-(defun color-pattern (blk) (list blk 'color '?))
+(load "helper.lsp")
 
 (defun supporters (blk)
   (mapcar #'car
     (fetch (list '? 'supports blk))))
-
-(defun flatten (ls)
-  (cond ((null ls) nil)
-        ((atom ls) (list ls))
-        (t (append (flatten (car ls)) (flatten (cdr ls))))))
 
 (defun description (blk)
   (flatten
@@ -28,13 +13,14 @@
 (defun removalbe_p (blk)
   (null (fetch (list blk 'supports '?))))
 
-(defun add-brick (lst)
-  (setq blockdata
-    (cons lst blockdata)))
-
-(defun add-support (x y)
-  (list (add-brick (list x 'supported-by y)) (add-brick (list y 'supports x))))
-
 (defun add-supports (blk blks)
   (cond ((null blks) NIL)
         (t (add-support blk (car blks)) (add-supports blk (cdr blks)))))
+
+(defun remove-blk (blk)
+  (setq blockdata
+    (remove-if
+      #'(lambda (x) (or
+        (match-triple x (list blk '? '?))
+        (match-triple x (list '? '? blk))))
+      blockdata)))

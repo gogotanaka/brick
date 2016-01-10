@@ -35,4 +35,6 @@
 
 (asser_equal (removalbe_p 'b2) NIL)
 
+(remove-blk 'b1)
+
 (print-elements-of-list blockdata)
