@@ -24,3 +24,6 @@
   (flatten
     (mapcar #'cdr
       (fetch (list blk '? '?)))))
+
+(defun removalbe_p (blk)
+  (null (fetch (list blk 'supports '?))))
